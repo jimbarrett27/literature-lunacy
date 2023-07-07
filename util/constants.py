@@ -1,3 +1,7 @@
+from pathlib import Path
+
+REPO_ROOT = Path(__file__).parent.parent
+
 INTERESTING_ARXIV_CATEGORIES = set([
     "cs.AI",
     "cs.CE",
@@ -10,3 +14,5 @@ INTERESTING_ARXIV_CATEGORIES = set([
     "stat.TH",
     "math.ST"
 ])
+
+EMBEDDINGS_FILENAME = 'embeddings.feather'
