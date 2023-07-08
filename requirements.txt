@@ -2,3 +2,7 @@ numpy
 pandas
 sentence_transformers
 tqdm
+pyarrow
+google-cloud-storage
+gcsfs
+scikit-learn

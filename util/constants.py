@@ -17,3 +17,5 @@ INTERESTING_ARXIV_CATEGORIES = set([
 ])
 
 EMBEDDINGS_FILENAME = 'embeddings.feather'
+
+GCP_BUCKET_NAME = 'arxiv_lunacy'

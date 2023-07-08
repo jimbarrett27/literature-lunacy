@@ -17,7 +17,7 @@ OUTPUT_FILE = REPO_ROOT / Path('data/embeddings.feather')
 MODEL_NAME = 'sentence-transformers/all-MiniLM-L6-v2'
 TORCH_DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
-def records_gen():
+def records_gen() -> Generator[Dict[str,Any], None, None]:
     """
     Generate the relevant records
     """
