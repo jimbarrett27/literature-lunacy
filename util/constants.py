@@ -12,7 +12,8 @@ INTERESTING_ARXIV_CATEGORIES = set([
     "stat.ME",
     "stat.ML",
     "stat.TH",
-    "math.ST"
+    "math.ST",
+    "q-bio.QM"
 ])
 
 EMBEDDINGS_FILENAME = 'embeddings.feather'

@@ -10,18 +10,18 @@ from tqdm import tqdm
 import pandas as pd
 from typing import Generator, Dict, Any
 
-from util.constants import INTERESTING_ARXIV_CATEGORIES
+from util.constants import INTERESTING_ARXIV_CATEGORIES, REPO_ROOT
 
-ARXIV_METADATA_SNAPSHOT_FILE =  Path('./arxiv-metadata-oai-snapshot.json')
-OUTPUT_FILE = Path('./embeddings.feather')
+ARXIV_METADATA_SNAPSHOT_FILE =  REPO_ROOT / Path('data/arxiv-metadata-oai-snapshot.json')
+OUTPUT_FILE = REPO_ROOT / Path('data/embeddings.feather')
 MODEL_NAME = 'sentence-transformers/all-MiniLM-L6-v2'
 TORCH_DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
-def records_gen() -> Generator[Dict[str,Any]]:
+def records_gen():
     """
     Generate the relevant records
     """
-    with Path('arxiv-metadata-oai-snapshot.json').open('r') as f:
+    with Path(ARXIV_METADATA_SNAPSHOT_FILE).open('r') as f:
         for line in f:
             record = json.loads(line)
             cats = set(record['categories'].split())
@@ -56,6 +56,7 @@ def produce_embeddings_df() -> pd.DataFrame:
         embeddings.append(model.encode(record['abstract'], device=TORCH_DEVICE))
 
     embeddings_df = pd.DataFrame(embeddings)
+    # feather doesn't like numerical column names
     embeddings_df = embeddings_df.rename(columns={i:f"dim{i}" for i in embeddings_df.columns})
     embeddings_df["id"] = ids
 

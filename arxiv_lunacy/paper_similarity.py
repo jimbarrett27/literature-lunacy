@@ -3,6 +3,7 @@ import numpy as np
 from arxiv_lunacy.embeddings import get_embeddings_df, get_paper_id_to_index
 
 def cosine_similarity(all_embeddings,embeddings_to_compare):
+    
     numerators = np.dot(all_embeddings, embeddings_to_compare)
     denominators = (np.linalg.norm(all_embeddings)*np.linalg.norm(embeddings_to_compare))
 
