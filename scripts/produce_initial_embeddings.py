@@ -1,21 +1,16 @@
-import torch
-
-from sentence_transformers import SentenceTransformer
 import json
 from pathlib import Path
 
-import torch
-import torch.nn.functional as F
 from tqdm import tqdm
 import pandas as pd
 from typing import Generator, Dict, Any
 
-from util.constants import INTERESTING_ARXIV_CATEGORIES, REPO_ROOT
+from util.constants import INTERESTING_ARXIV_CATEGORIES, REPO_ROOT, TORCH_DEVICE
+from arxiv_lunacy.embeddings import embed_abstract
 
 ARXIV_METADATA_SNAPSHOT_FILE =  REPO_ROOT / Path('data/arxiv-metadata-oai-snapshot.json')
 OUTPUT_FILE = REPO_ROOT / Path('data/embeddings.feather')
-MODEL_NAME = 'sentence-transformers/all-MiniLM-L6-v2'
-TORCH_DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+
 
 def records_gen() -> Generator[Dict[str,Any], None, None]:
     """
@@ -49,11 +44,9 @@ def produce_embeddings_df() -> pd.DataFrame:
     ids = []
     embeddings = []
 
-    model = SentenceTransformer(MODEL_NAME)
-
     for record in tqdm(records_gen(), total=n_records):
         ids.append(record['id'])
-        embeddings.append(model.encode(record['abstract'], device=TORCH_DEVICE))
+        embeddings.append(embed_abstract(record['abstract']))
 
     embeddings_df = pd.DataFrame(embeddings)
     # feather doesn't like numerical column names

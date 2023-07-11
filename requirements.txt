@@ -6,3 +6,5 @@ pyarrow
 google-cloud-storage
 gcsfs
 scikit-learn
+html2text
+feedparser

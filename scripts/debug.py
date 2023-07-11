@@ -1,0 +1,3 @@
+from arxiv_lunacy.latest_papers import get_latest_ids_and_abstracts
+
+get_latest_ids_and_abstracts()
