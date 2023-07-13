@@ -1,9 +1,11 @@
-from util.constants import INTERESTING_ARXIV_CATEGORIES
 import feedparser
-from html2text import html2text
-from arxiv_lunacy.embeddings import embed_abstract
-import pandas as pd
 import numpy as np
+import pandas as pd
+from html2text import html2text
+
+from arxiv_lunacy.embeddings import embed_abstract
+from util.constants import INTERESTING_ARXIV_CATEGORIES
+
 
 def get_arxiv_rss_url(arxiv_category: str):
 

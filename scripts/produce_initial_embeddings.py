@@ -1,12 +1,13 @@
 import json
 from pathlib import Path
+from typing import Any, Dict, Generator
 
-from tqdm import tqdm
 import pandas as pd
-from typing import Generator, Dict, Any
+from tqdm import tqdm
 
-from util.constants import INTERESTING_ARXIV_CATEGORIES, REPO_ROOT, TORCH_DEVICE
 from arxiv_lunacy.embeddings import embed_abstract
+from util.constants import (INTERESTING_ARXIV_CATEGORIES, REPO_ROOT,
+                            TORCH_DEVICE)
 
 ARXIV_METADATA_SNAPSHOT_FILE =  REPO_ROOT / Path('data/arxiv-metadata-oai-snapshot.json')
 OUTPUT_FILE = REPO_ROOT / Path('data/embeddings.feather')

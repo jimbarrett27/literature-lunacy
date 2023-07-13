@@ -1,6 +1,6 @@
 from pathlib import Path
-import torch
 
+import torch
 
 REPO_ROOT = Path(__file__).parent.parent
 
