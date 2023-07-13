@@ -1,8 +1,8 @@
 from functools import lru_cache
-from util.constants import EMBEDDINGS_FILENAME, REPO_ROOT, EMBEDDING_MODEL_NAME, TORCH_DEVICE
+from util.constants import EMBEDDINGS_DF_FILENAME, REPO_ROOT, EMBEDDING_MODEL_NAME, TORCH_DEVICE
 import pandas as pd
 from sentence_transformers import SentenceTransformer
-from util.storage import get_blob_stored_dataframe, save_dataframe_to_blob
+from util.storage import get_blob_stored_dataframe
 
 from logging import getLogger
 
@@ -11,12 +11,12 @@ LOGGER = getLogger(__name__)
 @lru_cache
 def get_embeddings_df():
 
-    local_path = REPO_ROOT / f'data/{EMBEDDINGS_FILENAME}'
+    local_path = REPO_ROOT / f'data/{EMBEDDINGS_DF_FILENAME}'
     if local_path.exists():
         return pd.read_feather(local_path)
 
 
-    embeddings_df = get_blob_stored_dataframe(EMBEDDINGS_FILENAME)
+    embeddings_df = get_blob_stored_dataframe(EMBEDDINGS_DF_FILENAME)
     embeddings_df.to_feather(local_path)
     return embeddings_df
 

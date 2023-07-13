@@ -1,6 +1,9 @@
 import pandas as pd
 
 from util.constants import GCP_BUCKET_NAME
+import shutil
+from pathlib import Path
+from google.cloud import storage
 
 def get_blob_stored_dataframe(blob_name: str):
     """
@@ -21,3 +24,16 @@ def save_dataframe_to_blob(
     df.to_feather(f'gs://{GCP_BUCKET_NAME}/{blob_name}')
 
     return False
+
+def save_file_to_blob(filepath: Path):
+
+    
+    client = storage.Client()
+
+    bucket = client.bucket(GCP_BUCKET_NAME)
+    blob = bucket.blob(filepath.name)
+
+    with filepath.open('rb') as f:
+        blob.upload_from_file(f)
+
+    
