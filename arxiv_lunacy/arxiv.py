@@ -44,8 +44,6 @@ def get_formatted_arxiv_api_url(
 
 def fetch_arxiv_papers(id_list: List[str]) -> List[ArxivPaper]:
 
-    id_list = ['2004.08731', '2004.08731']
-
     url = get_formatted_arxiv_api_url(id_list=id_list)
 
     paper_details = feedparser.parse(url)['entries']
