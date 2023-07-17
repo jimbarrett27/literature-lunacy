@@ -1,24 +1,37 @@
+import { useState } from 'react';
 
-const PAPERS = [{
-  "title": "A title",
-  "authorList": "A et al",
-  "publicationDate": "17th July 1991",
-  "abstract": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.  "
-},
-{
-  "title": "Another title",
-  "authorList": "B et al",
-  "publicationDate": "8th December 2020",
-  "abstract": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.  "
-}
-]
+function SearchField({ setPapersInView }) {
 
-function SearchField() {
+  const fetchPapersForSearchTerm = async () => {
+    let searchBox = document.getElementById("searchBox");
+    let searchTerm = searchBox.value;
+
+    let postBody = {
+      "search_term": searchTerm
+    }
+
+    fetch(
+      "/get_closest_papers",
+      {
+        method: "POST",
+        headers: {'Content-Type': 'application/json'}, 
+        body: JSON.stringify(postBody)
+      }
+    )
+    .then( (resp) => {
+      console.log(resp)
+      return resp.json()
+    })
+    .then((papers) => {
+      setPapersInView(papers)
+    })
+
+  }
 
   return (
     <>
     <input id="searchBox" type="text" />
-    <button>Search</button>
+    <button onClick={fetchPapersForSearchTerm} >Search</button>
     </>
   )
 }
@@ -46,11 +59,14 @@ function PaperSummary({ paper }) {
 }
 
 export default function MyApp() {
+
+  const [papersInView, setPapersInView] = useState([]);
+
   return (
     <div>
       <h1>Preprint Sanity</h1>
-      <SearchField />
-      <PaperSummaries papers={PAPERS} />
+      <SearchField setPapersInView={setPapersInView} />
+      <PaperSummaries papers={papersInView} />
     </div>
   );
 }

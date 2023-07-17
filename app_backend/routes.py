@@ -1,34 +1,27 @@
 from app_backend import app
-import numpy as np
+from flask import request
 
-@app.route('/random_dummy_paper')
-def random_dummy_paper():
+from arxiv_lunacy.embeddings import embed_abstract
+from arxiv_lunacy.paper_similarity import get_closest_papers_to_embedding
 
-    papers = [
-        {
-            "title": "A title",
+@app.route('/get_closest_papers', methods=['POST'])
+def get_closest_papers():
+
+    if not request.method == "POST":
+        return ""
+
+    request_data = request.get_json()
+
+    search_term = request_data['search_term']
+
+    embedding = embed_abstract(search_term).squeeze()
+    paper_ids = get_closest_papers_to_embedding(embedding)
+
+    dummy_papers = [{
+            "title": paper_id,
             "authorList": "A et al",
             "publicationDate": "17th July 1991",
             "abstract": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.  "
-        },
-        {
-            "title": "Another title",
-            "authorList": "B et al",
-            "publicationDate": "8th December 2020",
-            "abstract": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.  "
-        },
-        {
-            "title": "Yet another title",
-            "authorList": "c et al",
-            "publicationDate": "3rd February 2016",
-            "abstract": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.  "
-        },
-        {
-            "title": "Such title, much paper",
-            "authorList": "D et al",
-            "publicationDate": "15th October 1955",
-            "abstract": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.  "
-        }
-    ]
+    } for paper_id in paper_ids]
 
-    return np.random.choice(papers, size=2)
+    return dummy_papers
