@@ -59,6 +59,3 @@ def fetch_arxiv_papers(id_list: List[str]) -> List[ArxivPaper]:
     ]
 
     return arxiv_papers
-
-def get_arxiv_papers_for_ids(paper_ids: List[str]):
-    pass

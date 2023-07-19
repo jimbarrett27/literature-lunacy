@@ -19,7 +19,6 @@ function SearchField({ setPapersInView }) {
       }
     )
     .then( (resp) => {
-      console.log(resp)
       return resp.json()
     })
     .then((papers) => {

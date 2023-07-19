@@ -16,7 +16,7 @@ LOGGER = getLogger(__name__)
 @lru_cache
 def get_embeddings_df():
 
-    if int(os.environ.get('RUNNING_IN_CLOUD')) == 1:
+    if os.environ.get('RUNNING_IN_CLOUD') is not None:
         return get_blob_stored_dataframe(EMBEDDINGS_DF_FILENAME)
         
 
