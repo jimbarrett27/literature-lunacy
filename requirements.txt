@@ -9,3 +9,5 @@ scikit-learn
 html2text
 feedparser
 functions-framework==3.*
+flask
+gunicorn
