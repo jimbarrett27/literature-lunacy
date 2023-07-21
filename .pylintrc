@@ -1,0 +1,16 @@
+[BASIC]
+
+; # Good variable names which should always be accepted, separated by a comma.
+good-names=i,
+           j,
+           k,
+           _,
+           f,
+           app
+
+
+[MESSAGES CONTROL]
+disable =
+
+[format]
+max-line-length = 88
