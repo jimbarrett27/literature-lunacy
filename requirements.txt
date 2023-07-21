@@ -11,3 +11,7 @@ feedparser
 functions-framework==3.*
 flask
 gunicorn
+black
+pylint
+mypy
+isort
