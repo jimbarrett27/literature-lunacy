@@ -1,4 +1,7 @@
-import shutil
+"""
+Utils for interacting with GCP blob storage
+"""
+
 from pathlib import Path
 
 import pandas as pd
@@ -27,6 +30,9 @@ def save_dataframe_to_blob(df: pd.DataFrame, blob_name: str) -> bool:
 
 
 def save_file_to_blob(filepath: Path):
+    """
+    Uploads a file to blob storage
+    """
     client = storage.Client()
 
     bucket = client.bucket(GCP_BUCKET_NAME)

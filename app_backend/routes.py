@@ -1,3 +1,7 @@
+"""
+The backend API
+"""
+
 from flask import request
 
 from app_backend import app
@@ -6,8 +10,11 @@ from arxiv_lunacy.embeddings import embed_abstract
 from arxiv_lunacy.paper_similarity import get_closest_papers_to_embedding
 
 
-@app.route("/get_closest_papers", methods=["POST"])
-def get_closest_papers():
+@app.route("/get_closest_papers_to_search_term", methods=["POST"])
+def get_closest_papers_to_search_term():
+    """
+    Endpoint to fetch the closest papers to a search term
+    """
     if not request.method == "POST":
         return ""
 

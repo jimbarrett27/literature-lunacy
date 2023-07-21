@@ -1,3 +1,7 @@
+"""
+Various constants used throughout the repo
+"""
+
 from pathlib import Path
 
 import torch

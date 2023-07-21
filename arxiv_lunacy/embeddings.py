@@ -1,3 +1,7 @@
+"""
+Utilities for working with text embeddings
+"""
+
 import os
 from functools import lru_cache
 from logging import getLogger
@@ -19,6 +23,9 @@ LOGGER = getLogger(__name__)
 
 @lru_cache
 def get_embeddings_df():
+    """
+    Fetches the dataframe of all the embeddings
+    """
     if os.environ.get("RUNNING_IN_CLOUD") is not None:
         return get_blob_stored_dataframe(EMBEDDINGS_DF_FILENAME)
 
@@ -31,18 +38,18 @@ def get_embeddings_df():
     return embeddings_df
 
 
-def get_paper_id_to_index(embeddings_df):
-    return {
-        paper_id: ind for paper_id, ind in zip(embeddings_df.id, embeddings_df.index)
-    }
-
-
 @lru_cache
 def get_embedding_model():
+    """
+    Gets the model used for embedding the abstracts
+    """
     return SentenceTransformer(EMBEDDING_MODEL_NAME)
 
 
 def embed_abstract(abstract: str) -> np.ndarray:
+    """
+    Embeds the abstract into a fixed length vector
+    """
     model = get_embedding_model()
 
     return np.array(model.encode([abstract], device=TORCH_DEVICE))
