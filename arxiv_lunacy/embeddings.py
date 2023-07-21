@@ -8,7 +8,7 @@ from logging import getLogger
 
 import numpy as np
 import pandas as pd
-from sentence_transformers import SentenceTransformer
+from sentence_transformers import SentenceTransformer # type: ignore
 
 from util.constants import (
     EMBEDDING_MODEL_NAME,

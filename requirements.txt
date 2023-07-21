@@ -15,3 +15,5 @@ black
 pylint
 mypy
 isort
+pandas-stubs 
+types-google-cloud-ndb

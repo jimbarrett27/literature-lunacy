@@ -2,7 +2,7 @@
 Utilities around fetching and embedding the latest papers
 """
 
-import feedparser
+import feedparser # type: ignore
 import numpy as np
 import pandas as pd
 from html2text import html2text

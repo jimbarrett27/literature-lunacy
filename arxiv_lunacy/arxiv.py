@@ -3,10 +3,10 @@ Utilities for working with preprints from arxiv and the arxiv site and feeds
 """
 
 from dataclasses import dataclass
-from typing import Any, Dict, List
+from typing import Optional
 from urllib.parse import urlencode
 
-import feedparser
+import feedparser # type: ignore
 from html2text import html2text
 
 
@@ -17,11 +17,11 @@ class ArxivPaper:
     """
 
     title: str
-    authors: List[str]
+    authors: list[str]
     publish_date: str
     abstract: str
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, str]:
         """
         Represents a paper as a dict, formatted as the frontend expects
         """
@@ -37,15 +37,15 @@ ARXIV_API_URL = "http://export.arxiv.org/api/query"
 
 
 def get_formatted_arxiv_api_url(
-    search_query: str = None,
-    id_list: List[str] = None,
-    start: int = None,
-    max_results: int = None,
-):
+    search_query: Optional[str] = None,
+    id_list: Optional[list[str]] = None,
+    start: Optional[int] = None,
+    max_results: Optional[int] = None,
+) -> str:
     """
     Returns the URL for the arxiv API with correclty formatted query parameters
     """
-    query_params = {}
+    query_params: dict[str, str | int] = {}
     if search_query is not None:
         query_params["search_query"] = search_query
     if id_list is not None:
@@ -65,7 +65,7 @@ def get_arxiv_rss_url(arxiv_category: str):
     return f"http://export.arxiv.org/rss/{arxiv_category}"
 
 
-def fetch_arxiv_papers(id_list: List[str]) -> List[ArxivPaper]:
+def fetch_arxiv_papers(id_list: list[str]) -> list[ArxivPaper]:
     """
     Given a list of arxiv ids, fetch the details of the papers from the arxiv API
     """
