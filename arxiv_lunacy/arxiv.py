@@ -6,7 +6,7 @@ from dataclasses import dataclass
 from typing import Optional
 from urllib.parse import urlencode
 
-import feedparser # type: ignore
+import feedparser  # type: ignore
 from html2text import html2text
 
 

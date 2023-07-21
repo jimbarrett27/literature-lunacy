@@ -9,7 +9,7 @@ import tempfile as tmp
 import zipfile
 from pathlib import Path
 
-import functions_framework
+import functions_framework  # type: ignore
 import pandas as pd
 
 from arxiv_lunacy.embeddings import get_embeddings_df

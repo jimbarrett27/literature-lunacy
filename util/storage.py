@@ -5,7 +5,7 @@ Utils for interacting with GCP blob storage
 from pathlib import Path
 
 import pandas as pd
-from google.cloud import storage # type: ignore
+from google.cloud import storage  # type: ignore
 
 from util.constants import GCP_BUCKET_NAME
 

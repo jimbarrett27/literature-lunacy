@@ -7,7 +7,7 @@ from pathlib import Path
 from typing import Any, Dict, Generator
 
 import pandas as pd
-from tqdm import tqdm
+from tqdm import tqdm  # type: ignore
 
 from arxiv_lunacy.embeddings import embed_abstract
 from util.constants import INTERESTING_ARXIV_CATEGORIES, REPO_ROOT
