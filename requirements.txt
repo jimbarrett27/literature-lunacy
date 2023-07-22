@@ -19,3 +19,4 @@ pandas-stubs
 types-google-cloud-ndb
 types-tqdm
 pytest
+pytorch
