@@ -30,6 +30,6 @@ GCP_BUCKET_NAME = "arxiv_lunacy"
 
 EMBEDDING_MODEL_NAME = "sentence-transformers/all-MiniLM-L6-v2"
 
-TORCH_DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+TORCH_DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu") # pylint: disable=no-member
 
 GCP_FUNCTION_ZIPFILE_NAME = "gcp_functions.zip"
