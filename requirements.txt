@@ -11,3 +11,11 @@ feedparser
 functions-framework==3.*
 flask
 gunicorn
+black
+pylint
+mypy
+isort
+pandas-stubs 
+types-google-cloud-ndb
+types-tqdm
+pytest

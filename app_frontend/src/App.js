@@ -11,7 +11,7 @@ function SearchField({ setPapersInView }) {
     }
 
     fetch(
-      "/get_closest_papers",
+      "/get_closest_papers_to_search_term",
       {
         method: "POST",
         headers: {'Content-Type': 'application/json'}, 

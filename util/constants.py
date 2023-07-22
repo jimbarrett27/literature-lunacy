@@ -1,29 +1,37 @@
+"""
+Various constants used throughout the repo
+"""
+
 from pathlib import Path
 
 import torch
 
 REPO_ROOT = Path(__file__).parent.parent
 
-INTERESTING_ARXIV_CATEGORIES = set([
-    "cs.AI",
-    "cs.CE",
-    "cs.CL",
-    "cs.LG",
-    "stat.AP",
-    "stat.CO",
-    "stat.ME",
-    "stat.ML",
-    "stat.TH",
-    "math.ST",
-    "q-bio.QM"
-])
+INTERESTING_ARXIV_CATEGORIES = set(
+    [
+        "cs.AI",
+        "cs.CE",
+        "cs.CL",
+        "cs.LG",
+        "stat.AP",
+        "stat.CO",
+        "stat.ME",
+        "stat.ML",
+        "stat.TH",
+        "math.ST",
+        "q-bio.QM",
+    ]
+)
 
-EMBEDDINGS_DF_FILENAME = 'embeddings.feather'
+EMBEDDINGS_DF_FILENAME = "embeddings.feather"
 
-GCP_BUCKET_NAME = 'arxiv_lunacy'
+GCP_BUCKET_NAME = "arxiv_lunacy"
 
-EMBEDDING_MODEL_NAME = 'sentence-transformers/all-MiniLM-L6-v2'
+EMBEDDING_MODEL_NAME = "sentence-transformers/all-MiniLM-L6-v2"
 
-TORCH_DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+TORCH_DEVICE = torch.device(  # pylint: disable=no-member
+    "cuda" if torch.cuda.is_available() else "cpu"
+)
 
-GCP_FUNCTION_ZIPFILE_NAME = 'gcp_functions.zip' 
+GCP_FUNCTION_ZIPFILE_NAME = "gcp_functions.zip"
