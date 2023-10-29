@@ -8,6 +8,7 @@ from app_backend import app
 from arxiv_lunacy.arxiv import fetch_arxiv_papers
 from arxiv_lunacy.embeddings import embed_abstract
 from arxiv_lunacy.paper_similarity import get_closest_papers_to_embedding
+import json
 
 
 @app.route("/get_closest_papers_to_search_term", methods=["POST"])
@@ -27,4 +28,4 @@ def get_closest_papers_to_search_term():
 
     arxiv_papers = fetch_arxiv_papers(paper_ids)
 
-    return [paper.to_dict() for paper in arxiv_papers]
+    return json.dumps([paper.to_dict() for paper in arxiv_papers])
