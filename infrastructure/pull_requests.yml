@@ -1,43 +1,43 @@
 steps:
   # Install dependencies
-  - name: Install Python dependencies
+  - name: python
     entrypoint: pip
     args: ["install", "-r", "requirements.txt", "--user"]
 
   # Check import formatting
-  - name: Sort Python imports
+  - name: python
     entrypoint: python
     args: ["-m", "isort", "--check", "app_backend", "util", "arxiv_lunacy", "scripts"]
 
   # Check formatting
-  - name: Check Python code formatting
+  - name: python
     entrypoint: python
     args: ["-m", "black", "--check", "app_backend", "util", "arxiv_lunacy", "scripts"]
 
   # Check formatting
-  - name: Lint Python code
+  - name: python
     entrypoint: python
     args: ["-m", "pylint", "app_backend", "util", "arxiv_lunacy", "scripts"]
 
   # Check typing
-  - name: Typecheck Python code
+  - name: python
     entrypoint: python
     args: ["-m", "mypy", "app_backend", "util", "arxiv_lunacy", "scripts"]
 
   # Run tests
-  - name: Run Python unit tests
+  - name: python
     entrypoint: python
     args: ["-m", "pytest"]
 
-  - name: Switch to frontend
+  - name: bash
     entrypoint: cd
     args: ["app_frontend"]
 
-  - name: Install JS dependencies
+  - name: npm
     entrypoint: npm
     args: ["install", "--legacy-peer-deps"]
 
-  - name: Lint Typescript code
+  - name: npm
     entrypoint: npx
     args: ["eslint" ,"src/*.tsx"]
   
