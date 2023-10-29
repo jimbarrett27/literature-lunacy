@@ -1,6 +1,6 @@
-numpy
-pandas
-sentence_transformers
+numpy==1.25.1
+pandas==2.0.3
+sentence_transformers==2.2.2
 tqdm
 pyarrow
 google-cloud-storage
