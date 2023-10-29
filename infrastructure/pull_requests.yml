@@ -1,31 +1,31 @@
 steps:
   # Install dependencies
-  - name: python
+  - name: python:3.9.18-slim-bullseye
     entrypoint: pip
     args: ["install", "-r", "requirements.txt", "--user"]
 
   # Check import formatting
-  - name: python
+  - name: python:3.9.18-slim-bullseye
     entrypoint: python
     args: ["-m", "isort", "--check", "app_backend", "util", "arxiv_lunacy", "scripts"]
 
   # Check formatting
-  - name: python
+  - name: python:3.9.18-slim-bullseye
     entrypoint: python
     args: ["-m", "black", "--check", "app_backend", "util", "arxiv_lunacy", "scripts"]
 
   # Check formatting
-  - name: python
+  - name: python:3.9.18-slim-bullseye
     entrypoint: python
     args: ["-m", "pylint", "app_backend", "util", "arxiv_lunacy", "scripts"]
 
   # Check typing
-  - name: python
+  - name: python:3.9.18-slim-bullseye
     entrypoint: python
     args: ["-m", "mypy", "app_backend", "util", "arxiv_lunacy", "scripts"]
 
   # Run tests
-  - name: python
+  - name: python:3.9.18-slim-bullseye
     entrypoint: python
     args: ["-m", "pytest"]
 
