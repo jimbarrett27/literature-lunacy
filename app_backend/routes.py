@@ -2,6 +2,8 @@
 The backend API
 """
 
+import json
+
 from flask import request
 
 from app_backend import app
@@ -27,4 +29,4 @@ def get_closest_papers_to_search_term():
 
     arxiv_papers = fetch_arxiv_papers(paper_ids)
 
-    return [paper.to_dict() for paper in arxiv_papers]
+    return json.dumps([paper.to_dict() for paper in arxiv_papers])
