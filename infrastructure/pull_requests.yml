@@ -29,16 +29,12 @@ steps:
     entrypoint: python
     args: ["-m", "pytest"]
 
-  - name: bash
-    entrypoint: cd
-    args: ["app_frontend"]
-
-  - name: npm
+  - name: node
     entrypoint: npm
-    args: ["install", "--legacy-peer-deps"]
+    args: ["--prefix", "./app_frontend", "install", "--legacy-peer-deps", "./app_frontend"]
 
-  - name: npm
-    entrypoint: npx
-    args: ["eslint" ,"src/*.tsx"]
+  - name: node
+    entrypoint: npm
+    args: ["--prefix", "./app_frontend", "exec", "eslint" ,"app_frontend/src/*.tsx"]
   
 timeout: "1600s"
